@@ -1,0 +1,8 @@
+../Src/lcd_i2c.c:10:6:delay_ms	2
+../Src/lcd_i2c.c:15:6:i2c1_config	1
+../Src/lcd_i2c.c:34:6:i2c1_transmit	5
+../Src/lcd_i2c.c:52:6:lcd_send_cmd	1
+../Src/lcd_i2c.c:62:6:lcd_send_data	1
+../Src/lcd_i2c.c:72:6:lcd_clear	2
+../Src/lcd_i2c.c:79:6:lcd_init	1
+../Src/lcd_i2c.c:102:6:lcd_send_string	2

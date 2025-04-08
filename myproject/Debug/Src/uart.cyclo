@@ -1,0 +1,4 @@
+../Src/uart.c:9:6:uart2_config	1
+../Src/uart.c:24:6:uart2_gpio	1
+../Src/uart.c:35:6:uart_sendchar	3
+../Src/uart.c:42:6:uart_sendstring	2

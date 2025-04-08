@@ -1,0 +1,5 @@
+../Src/main.c:46:6:Enter_Number	32	static
+../Src/main.c:65:6:Display_Data	72	static
+../Src/main.c:77:6:TIM3_IRQHandler	80	static
+../Src/main.c:98:6:TIM4_IRQHandler	4	static
+../Src/main.c:116:5:main	152	static

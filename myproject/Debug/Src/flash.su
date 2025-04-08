@@ -1,0 +1,5 @@
+../Src/flash.c:10:6:Flash_Unlock	4	static
+../Src/flash.c:18:6:Flash_Lock	4	static
+../Src/flash.c:22:6:Flash_ErasePage	16	static
+../Src/flash.c:31:6:Flash_Write	16	static
+../Src/flash.c:39:6:Flash_WriteString	32	static
