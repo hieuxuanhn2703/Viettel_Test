@@ -28,3 +28,4 @@ Trong chế độ Config:
 - myproject                  : **Chương trình sử dụng vòng lặp While**
 - RTOS_project               : **Chương trình sử dụng hệ điều hành RTOS**
 - STM32F103_SDCard_SPI       : **Chương trình ghi dữ liệu vào thẻ nhớ theo cơ chế xoay vòng**
+- project                    : **File mô phỏng proteus**
