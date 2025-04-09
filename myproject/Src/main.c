@@ -125,14 +125,15 @@ int main(void)
 	Timer3_Init();
 	Timer4_Init();
 	Timer1_Init();
-	GPIOA_ODR |= (1 << 5);
-	GPIOA_ODR &= ~(1 << 4);
-	TIM2_CCR1 = 1000 * (value[0] / 100);      // Độ rộng xung 100%
-	TIM2_CR1 |= TIM2_CR1_CEN; // Bắt đầu Timer
-	TIM4_CR1 |= TIM4_CR1_CEN; // Bắt đầu Timer
+	GPIOA_ODR |= (1 << 5);//select direction of rotation
+	GPIOA_ODR &= ~(1 << 4);//select direction of rotation
+	TIM2_CCR1 = 1000 * (value[0] / 100);      // PWM
+	TIM2_CR1 |= TIM2_CR1_CEN; // start Timer2
+	TIM4_CR1 |= TIM4_CR1_CEN; // start Timer4
     /* Loop forever */
 	Display_Data();
 	while(1){
+		//enter 'C' and '=' to go to password
 		char data = read_keypad();
 		if (data == 'C'){
 			TIM1_CNT = 0;
@@ -144,6 +145,8 @@ int main(void)
 			}
 			TIM1_CR1 &= ~TIM1_CR1_CEN;
 			if (data == '='){
+
+				//enter password
 				LCD_SendCommand(0x0E);
 				LCD_Clear();
 				LCD_Gotoxy(0,0);
@@ -170,6 +173,8 @@ int main(void)
 						LCD_Puts("incorrect, again:");
 					}
 				}
+
+				//go to menu
 				LCD_Menu(0);
 				char new_data;
 				int a = 0;
@@ -185,6 +190,8 @@ int main(void)
 					}
 					if (new_data == '+'){
 						if (a == 0){
+
+							//change values of S1 and T1
 							char cache[10] = {'0','0','0','0','0','0','0','0','0','\0'};
 							char cache1[10] = {'0','0','0','0','0','0','0','0','0','\0'};
 							LCD_Clear();
@@ -217,6 +224,8 @@ int main(void)
 							}
 						}
 						else if (a == 1){
+
+							//change values of S2, T2
 							char cache[10] = {'0','0','0','0','0','0','0','0','0','\0'};
 							char cache1[10] = {'0','0','0','0','0','0','0','0','0','\0'};
 							LCD_Clear();
@@ -248,6 +257,8 @@ int main(void)
 							}
 						}
 						else{
+
+							//change password
 							bool format = false;
 							LCD_Clear();
 							LCD_Gotoxy(0,0);
@@ -281,6 +292,7 @@ int main(void)
 					}
 				}
 				if (new_data == '=') {
+					//save to flash memory
 					LCD_Clear();
 					LCD_Gotoxy(0,0);
 					LCD_Puts("Save the old values");

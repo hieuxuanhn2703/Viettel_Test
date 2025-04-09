@@ -65,8 +65,8 @@ all: main-build
 main-build: STM32F103_SDCard_SPI.elf secondary-outputs
 
 # Tool invocations
-STM32F103_SDCard_SPI.elf STM32F103_SDCard_SPI.map: $(OBJS) $(USER_OBJS) D:\STM32\ SD\ Card\ SPI\ Tutorial\ Attachments\STM32F103_SDCard_SPI\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32F103_SDCard_SPI.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\STM32 SD Card SPI Tutorial Attachments\STM32F103_SDCard_SPI\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F103_SDCard_SPI.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F103_SDCard_SPI.elf STM32F103_SDCard_SPI.map: $(OBJS) $(USER_OBJS) D:\Viettel_Test\STM32F103_SDCard_SPI\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STM32F103_SDCard_SPI.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Viettel_Test\STM32F103_SDCard_SPI\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F103_SDCard_SPI.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

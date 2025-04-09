@@ -15,6 +15,15 @@ char TxBuffer[250];
 #define file_number_location       (*(volatile uint32_t *)(0x0800EC00))
 int file_number = 0;
 
+FATFS FatFs;
+FIL Fil;
+FRESULT FR_Status;
+FATFS *FS_Ptr;
+DWORD FreeClusters;
+uint32_t FreeSpace;
+DWORD pos = 0;
+int data = 0;
+
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI2_Init(void);
@@ -29,15 +38,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_FATFS_Init();
 
-
-  FATFS FatFs;
-  FIL Fil;
-  FRESULT FR_Status;
-  FATFS *FS_Ptr;
-  DWORD FreeClusters;
-  uint32_t FreeSpace;
-  DWORD pos = 0;
-  int data = 0;
+  //save the index of file to flash memory, whenever reset MCU creating a new file to save data
   if (file_number_location == 0xFF){
 	  char buffer[5];
 	  sprintf(buffer, "%d", file_number);
@@ -45,9 +46,9 @@ int main(void)
   }
   char buffer[5];
   Flash_ReadString(0x0800EC00, buffer, sizeof(buffer));
-  file_number = atoi(buffer) + 1;
+  file_number = atoi(buffer) + 1;//increase file number
   sprintf(buffer, "%d", file_number);
-  Flash_WriteString(0x0800EC00, buffer);
+  Flash_WriteString(0x0800EC00, buffer);//save new file number to flash
   FR_Status = f_mount(&FatFs, "", 1);
   while(1)
   {
@@ -75,7 +76,9 @@ int main(void)
 			f_close(&Fil);
 
 		}
-		else {
+		if (FreeSpace<=0) {
+
+			//when the sd card is full, erasing data in the oldest file and save new data
 			file_number = 1;
 			char buffer[5];
 			sprintf(buffer, "%d", file_number);
